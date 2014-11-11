@@ -3,7 +3,8 @@ from collections import namedtuple
 MODE_SINGLE_URL = 0
 
 
-class MonitorConfigParseError(Exception): pass
+class MonitorConfigParseError(Exception):
+    pass
 
 
 class MonitorConfig(namedtuple('MonitorConfig', "mode params")):

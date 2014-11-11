@@ -26,8 +26,9 @@ class ClientConn(object):
 
         while True:
             try:
-                self.sock = socket.create_connection(self.server_addr, timeout=5)
-            except socket.error as e:
+                self.sock = socket.create_connection(self.server_addr,
+                                                     timeout=5)
+            except socket.error:
                 log.warn("connection failed")
                 gevent.sleep(1)
                 log.info("retrying")

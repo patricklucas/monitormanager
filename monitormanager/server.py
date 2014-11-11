@@ -25,7 +25,8 @@ class Server(object):
         return self.server.serve_forever()
 
     def handle(self, sock, _):
-        server_client = ServerClient(sock, self.monitor_store, self.switchboard)
+        server_client = ServerClient(sock, self.monitor_store,
+                                     self.switchboard)
         gevent.spawn(server_client.run)
 
 
@@ -43,7 +44,11 @@ def main():
     http_server = WSGIServer(('', 8766), app)
     http_server_greenlet = gevent.spawn(http_server.serve_forever)
 
-    gevent.joinall([server_greenlet, http_server_greenlet])
+    gevent.joinall([
+        switchboard_greenlet,
+        server_greenlet,
+        http_server_greenlet
+    ])
 
 
 if __name__ == '__main__':

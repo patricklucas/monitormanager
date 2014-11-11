@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import logging
 
 from gevent import Timeout, socket
-import simplejson as json
 
 from monitormanager import protocol
 
@@ -31,7 +30,7 @@ class ServerClient(object):
         log.info("client ident (%r)", self)
 
         self.monitor_store.ensure_monitor_exists(self.identity)
-        
+
         self.switchboard.register(self.identity, self)
         monitor = self.monitor_store.get_monitor(self.identity)
         if monitor.config:
@@ -73,4 +72,5 @@ class ServerClient(object):
         return protocol.deserialize_identity(line)
 
     def __repr__(self):
-        return "<ServerClient identity=%s addr=%s>" % (self.identity, self._peer)
+        return "<ServerClient identity=%s addr=%s>" % (self.identity,
+                                                       self._peer)

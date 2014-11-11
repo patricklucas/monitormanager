@@ -1,9 +1,7 @@
 from __future__ import absolute_import
 
 import logging
-import signal
 import sys
-import time
 
 import gevent
 
@@ -18,7 +16,7 @@ class Client(object):
     def __init__(self, identity, server_addr):
         self.identity = identity
         self.client_conn = ClientConn(identity, server_addr, self.on_data)
-        
+
     def start(self):
         self.client_conn_greenlet = gevent.Greenlet(self.client_conn.run)
         self.client_conn_greenlet.link_exception(self.on_client_conn_exception)
@@ -44,7 +42,6 @@ def main():
     #browser = Browser()
     #with browser:
     #    send_config(browser)
-    #    signal.pause()
 
 
 if __name__ == '__main__':

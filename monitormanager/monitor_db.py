@@ -11,7 +11,6 @@ import simplejson as json
 
 from monitormanager.monitor_config import parse_monitor_config
 from monitormanager.monitor_config import MonitorConfigParseError
-from monitormanager import protocol
 
 log = logging.getLogger(__name__)
 
