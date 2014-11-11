@@ -1,0 +1,5 @@
+Flask==0.10.1
+boto==2.34.0
+gevent==1.0.1
+kazoo==2.0
+simplejson==3.6.5

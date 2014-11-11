@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %} {{ monitor.alias or monitor.identity }} {% endblock %}
+
+{% block header %}
+Monitor:
+
+{% if monitor.alias %}
+    {{ monitor.alias }}
+{% else %}
+    <em>{{ monitor.identity }}</em>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<p>
+<form method="POST">
+<label for="alias-field">Alias:</label>
+<input type="text" id="alias-field" name="alias" value="{{ monitor.alias or ""}}" />
+<label for="url-field">URL:</label>
+<input type="text" id="url-field" name="url" value="{{ monitor.config and monitor.config.url or ""}}" />
+<input type="submit" value="Submit" />
+</form>
+</p>
+
+<p>
+<form method="POST" action="{{ url_for("reload_monitor", identity=monitor.identity) }}">
+<input type="submit" value="Reload" />
+</form>
+</p>
+
+{% if previous_10_configs %}
+<h4>Last 10 URLs:</h4>
+<ul>
+{% for config in previous_10_configs %}
+    <li>{{ config.url }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h3><a href="{{ url_for("list_monitors") }}">Back</a></h3>
+{% endblock %}

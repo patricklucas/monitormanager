@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %} Monitors {% endblock %}
+
+{% block head %}
+<style>
+div#monitor_create_form {
+    margin-bottom: 10px;
+}
+
+table#monitors_table tbody input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+</style>
+{% endblock %}
+
+{% block header %} Monitors {% endblock %}
+
+{% block content %}
+<table border="1" id="monitors_table">
+<thead>
+    <th width="150px">Monitor</th>
+    <th width="300px">URL</th>
+</thead>
+<tbody>
+{% for monitor in monitors %}
+<tr>
+    <td>
+        <a href="{{ url_for("get_monitor", identity=monitor.identity) }}">
+    {% if monitor.alias %}
+        {{ monitor.alias }}
+    {% else %}
+        <em>{{ monitor.identity }}</em>
+    {% endif %}
+        </a>
+    </td>
+    <td>
+        {{ monitor.config.url }}
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
