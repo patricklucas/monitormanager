@@ -3,3 +3,5 @@ boto==2.34.0
 gevent==1.0.1
 kazoo==2.0
 simplejson==3.6.5
+PyStaticConfiguration==0.7.2
+PyYAML==3.11

@@ -7,6 +7,7 @@ import gevent
 
 from monitormanager.browser import Browser
 from monitormanager.client_conn import ClientConn
+from monitormanager.config import config
 
 log = logging.getLogger(__name__)
 
@@ -35,7 +36,8 @@ class Client(object):
 
 def main():
     identity = sys.argv[1]
-    client = Client(identity, ("localhost", 8765))
+    client_addr = (config.mm_connect_host, config.mm_connect_port)
+    client = Client(identity, client_addr)
     client.start()
     client.join()
 

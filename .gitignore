@@ -1,6 +1,7 @@
 # monitormanager
 
 .*.swp
+/config.yaml
 /venv/
 
 # Byte-compiled / optimized / DLL files

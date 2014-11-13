@@ -9,14 +9,11 @@ from boto.dynamodb2.exceptions import ItemNotFound
 from boto.dynamodb2.table import Table
 import simplejson as json
 
+from monitormanager.config import config
 from monitormanager.monitor_config import parse_monitor_config
 from monitormanager.monitor_config import MonitorConfigParseError
 
 log = logging.getLogger(__name__)
-
-DYNAMODB_REGION = 'us-west-1'
-DYNAMODB_MONITORS_TABLE = 'monitormanager_monitors'
-DYNAMODB_CONFIGS_TABLE = 'monitormanager_configs'
 
 Monitor = namedtuple('Monitor', "identity alias config")
 
@@ -30,14 +27,15 @@ class MonitorDB(object):
     @property
     def dynamodb(self):
         if self._dynamodb is None:
-            self._dynamodb = boto.dynamodb2.connect_to_region(DYNAMODB_REGION)
+            self._dynamodb = boto.dynamodb2.connect_to_region(
+                config.aws_region)
 
         return self._dynamodb
 
     @property
     def monitors_table(self):
         if self._monitors_table is None:
-            self._monitors_table = Table(DYNAMODB_MONITORS_TABLE,
+            self._monitors_table = Table(config.dynamodb_monitors_table,
                                          connection=self.dynamodb)
 
         return self._monitors_table
@@ -45,7 +43,7 @@ class MonitorDB(object):
     @property
     def configs_table(self):
         if self._configs_table is None:
-            self._configs_table = Table(DYNAMODB_CONFIGS_TABLE,
+            self._configs_table = Table(config.dynamodb_configs_table,
                                         connection=self.dynamodb)
 
         return self._configs_table

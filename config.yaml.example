@@ -1,0 +1,32 @@
+### Server
+
+# Listen host for monitormanager server
+# mm_listen_host: 0.0.0.0
+
+# Listen port for monitormanager server
+# mm_listen_port: 8765
+
+# Listen host for http server
+# http_listen_host: 0.0.0.0
+
+# Listen port for http server
+# http_listen_port: 8766
+
+### Client
+
+# Connect host for monitormanager server
+# mm_connect_host: 127.0.0.1
+
+# Connect port for monitormanager server
+# mm_connect_port: 8765
+
+### AWS
+
+# AWS region
+# aws_region: us-west-1
+
+# DynamoDB monitors table
+# dynamodb_monitors_table: monitormanager_monitors
+
+# DynamoDB configs table
+# dynamodb_configs_table: monitormanager_configs
