@@ -5,9 +5,7 @@ import sys
 
 import gevent
 
-from monitormanager.browser import Browser
 from monitormanager.client_conn import ClientConn
-from monitormanager.config import config
 
 log = logging.getLogger(__name__)
 
@@ -32,20 +30,3 @@ class Client(object):
 
     def join(self):
         return self.client_conn_greenlet.join()
-
-
-def main():
-    identity = sys.argv[1]
-    client_addr = (config.mm_connect_host, config.mm_connect_port)
-    client = Client(identity, client_addr)
-    client.start()
-    client.join()
-
-    #browser = Browser()
-    #with browser:
-    #    send_config(browser)
-
-
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
-    main()

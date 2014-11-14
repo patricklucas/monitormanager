@@ -15,6 +15,7 @@ class Config(schema.Schema):
     http_listen_port = schema.int(default=8766)
 
     # Client
+    identity = schema.string()
     mm_connect_host = schema.string(default="127.0.0.1")
     mm_connect_port = schema.int(default=8765)
 

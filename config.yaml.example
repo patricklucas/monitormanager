@@ -14,6 +14,9 @@
 
 ### Client
 
+# Monitor identity (required)
+# identity: tvwall01:0
+
 # Connect host for monitormanager server
 # mm_connect_host: 127.0.0.1
 

@@ -1,0 +1,2 @@
+usr/share/python/monitormanager/bin/monitormanager-server usr/bin/monitormanager-server
+usr/share/python/monitormanager/bin/monitormanager-client usr/bin/monitormanager-client
