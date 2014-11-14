@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 import argparse
 import logging
-import os
 
 import gevent
 from gevent.pywsgi import WSGIServer
@@ -15,8 +14,6 @@ from monitormanager.monitor_db import MonitorDB
 from monitormanager.server import Server
 from monitormanager.switchboard import Switchboard
 
-DEFAULT_CONFIG_FILE = "config.yaml"
-
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -28,7 +25,7 @@ def parse_args():
     parser.add_argument(
         "-c", "--config", dest="config_file",
         default=None,
-        help="Path to configuration file (default: %s)" % DEFAULT_CONFIG_FILE)
+        help="Path to configuration file")
     parser.add_argument(
         "-v", "--verbose", dest="verbose",
         default=False, action="store_true",
@@ -51,10 +48,7 @@ def configure_logging(args):
 
 
 def load_config(args):
-    if args.config_file is None:
-        if os.path.isfile(DEFAULT_CONFIG_FILE):
-            config.load(DEFAULT_CONFIG_FILE)
-    elif args.config_file:
+    if args.config_file:
         config.load(args.config_file)
 
 
