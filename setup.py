@@ -1,14 +1,7 @@
-import sys
-
 from setuptools import setup
 
 from monitormanager import __version__
 
-
-extra_install_requires = []
-if sys.version_info < (2, 7):
-    # argparse is in the standard library of Python >= 2.7
-    extra_install_requires.append("argparse")
 
 setup(
     name="monitormanager",
@@ -27,5 +20,5 @@ setup(
         "simplejson",
         "PyStaticConfiguration",
         "PyYAML",
-    ] + extra_install_requires,
+    ],
 )
